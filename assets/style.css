@@ -1,0 +1,244 @@
+/* Custom CSS for SPSS to ASCII Converter */
+
+/* Global styles */
+body {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.container-fluid {
+    padding: 20px;
+}
+
+/* Header styling */
+h2 {
+    color: #2c3e50;
+    font-weight: 700;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+    margin-bottom: 30px;
+}
+
+/* Card styling */
+.card {
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 35px rgba(0,0,0,0.2);
+}
+
+.card-header {
+    background: linear-gradient(135deg, #3498db, #2980b9);
+    color: white;
+    border-radius: 15px 15px 0 0 !important;
+    font-weight: 600;
+    padding: 15px 20px;
+    border: none;
+}
+
+.card-body {
+    padding: 25px;
+}
+
+/* Upload area styling */
+.upload-area {
+    border: 2px dashed #3498db !important;
+    border-radius: 10px !important;
+    background: linear-gradient(45deg, #f8f9fa, #e9ecef);
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.upload-area:hover {
+    border-color: #2980b9 !important;
+    background: linear-gradient(45deg, #e3f2fd, #bbdefb);
+    transform: scale(1.02);
+}
+
+/* Button styling */
+.btn {
+    border-radius: 25px;
+    font-weight: 600;
+    padding: 10px 25px;
+    transition: all 0.3s ease;
+    border: none;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, #3498db, #2980b9);
+    box-shadow: 0 4px 15px rgba(52, 152, 219, 0.3);
+}
+
+.btn-primary:hover {
+    background: linear-gradient(135deg, #2980b9, #1f5f8b);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(52, 152, 219, 0.4);
+}
+
+.btn-success {
+    background: linear-gradient(135deg, #27ae60, #229954);
+    box-shadow: 0 4px 15px rgba(39, 174, 96, 0.3);
+}
+
+.btn-success:hover {
+    background: linear-gradient(135deg, #229954, #1e8449);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(39, 174, 96, 0.4);
+}
+
+.btn-info {
+    background: linear-gradient(135deg, #17a2b8, #138496);
+    box-shadow: 0 4px 15px rgba(23, 162, 184, 0.3);
+}
+
+.btn-info:hover {
+    background: linear-gradient(135deg, #138496, #0f6674);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(23, 162, 184, 0.4);
+}
+
+.btn:disabled {
+    opacity: 0.6;
+    transform: none !important;
+    box-shadow: none !important;
+}
+
+/* Alert styling */
+.alert {
+    border-radius: 10px;
+    border: none;
+    font-weight: 500;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+.alert-success {
+    background: linear-gradient(135deg, #d4edda, #c3e6cb);
+    color: #155724;
+}
+
+.alert-danger {
+    background: linear-gradient(135deg, #f8d7da, #f1b0b7);
+    color: #721c24;
+}
+
+/* Progress bar styling */
+.progress {
+    height: 25px;
+    border-radius: 15px;
+    background: rgba(255, 255, 255, 0.2);
+    box-shadow: inset 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.progress-bar {
+    background: linear-gradient(135deg, #28a745, #20c997);
+    border-radius: 15px;
+    transition: width 0.6s ease;
+}
+
+/* Spinner styling */
+.spinner-border {
+    border-width: 3px;
+}
+
+/* Form controls */
+.form-control, .form-select {
+    border-radius: 10px;
+    border: 2px solid #e9ecef;
+    transition: all 0.3s ease;
+    padding: 12px 15px;
+}
+
+.form-control:focus, .form-select:focus {
+    border-color: #3498db;
+    box-shadow: 0 0 0 0.2rem rgba(52, 152, 219, 0.25);
+}
+
+/* Switch styling */
+.form-check-input:checked {
+    background-color: #3498db;
+    border-color: #3498db;
+}
+
+/* Log content styling */
+#log-content {
+    background: linear-gradient(135deg, #2c3e50, #34495e) !important;
+    color: #ecf0f1 !important;
+    border-radius: 10px !important;
+    font-family: 'Courier New', monospace !important;
+    box-shadow: inset 0 2px 4px rgba(0,0,0,0.3);
+}
+
+/* Instructions styling */
+.card:last-child .card-body {
+    background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+    border-radius: 0 0 15px 15px;
+}
+
+.card:last-child .card-body ul li {
+    margin-bottom: 8px;
+    color: #495057;
+}
+
+.card:last-child .card-body ul li::marker {
+    color: #3498db;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .container-fluid {
+        padding: 10px;
+    }
+    
+    .card-body {
+        padding: 15px;
+    }
+    
+    .btn {
+        padding: 8px 20px;
+        font-size: 14px;
+    }
+}
+
+/* Animation for cards */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.card {
+    animation: fadeInUp 0.6s ease-out;
+}
+
+/* Custom scrollbar for log content */
+#log-content::-webkit-scrollbar {
+    width: 8px;
+}
+
+#log-content::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+}
+
+#log-content::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 4px;
+}
+
+#log-content::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.5);
+}
