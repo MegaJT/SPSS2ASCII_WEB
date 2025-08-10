@@ -69,6 +69,7 @@ def increment_conversion_counter():
 
 # Load initial counter
 initial_counter = load_conversion_counter()
+print(initial_counter)
 
 app.layout = dbc.Container([
     # Store components for session management
@@ -701,6 +702,12 @@ def show_progress_on_start(n_clicks, spss_data):
         return {"display": "block"}, False, ""
     return {"display": "none"}, False, ""
 
+def cleanup_session_directory(session_id):
+    """Clean up session directory while preserving counter"""
+    session_dir = os.path.join(TEMP_DIR, session_id)
+    if os.path.exists(session_dir):
+        shutil.rmtree(session_dir)
+
 # Download button callback
 @app.callback(
     Output("download-zip", "data"),
@@ -723,6 +730,9 @@ def trigger_download(n_clicks, session_id, spss_data):
                 
                 # Extract filename from the zip path for consistent naming
                 filename = os.path.basename(zip_path)
+
+                 # CLEANUP: Only remove THIS session's directory
+                cleanup_session_directory(session_id)
                 
                 return dcc.send_bytes(zip_data, filename)
             else:
