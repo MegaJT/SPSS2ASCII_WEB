@@ -37,23 +37,45 @@ processing_status = {}
 TEMP_DIR = os.path.join(os.getcwd(), "temp")
 os.makedirs(TEMP_DIR, exist_ok=True)
 
-# File counter management
-COUNTER_FILE = os.path.join(TEMP_DIR, "conversion_counter.json")
+# File counter management (persist outside temp for lifetime tracking)
+# Store in project root alongside src/, with a fallback migration from legacy temp file
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+COUNTER_FILE = os.path.join(BASE_DIR, "conversion_counter.json")
+LEGACY_COUNTER_FILE = os.path.join(TEMP_DIR, "conversion_counter.json")
 
 def load_conversion_counter():
-    """Load the conversion counter from file"""
+    """Load the conversion counter from the persistent file.
+
+    If a legacy counter exists in temp but the new persistent file does not,
+    migrate the value to the new location.
+    """
     try:
+        # Preferred persistent location
         if os.path.exists(COUNTER_FILE):
             with open(COUNTER_FILE, 'r') as f:
                 data = json.load(f)
                 return data.get('total_conversions', 0)
+
+        # One-time migration from legacy temp location
+        if os.path.exists(LEGACY_COUNTER_FILE):
+            with open(LEGACY_COUNTER_FILE, 'r') as f:
+                data = json.load(f)
+                count = data.get('total_conversions', 0)
+            # Save to new persistent path
+            save_conversion_counter(count)
+            return count
     except Exception as e:
         print(f"Error loading counter: {e}")
     return 0
 
 def save_conversion_counter(count):
-    """Save the conversion counter to file"""
+    """Save the conversion counter to the persistent file."""
     try:
+        # Ensure the directory for COUNTER_FILE exists (in case of custom paths)
+        counter_dir = os.path.dirname(COUNTER_FILE)
+        if counter_dir and not os.path.exists(counter_dir):
+            os.makedirs(counter_dir, exist_ok=True)
+
         data = {'total_conversions': count, 'last_updated': datetime.now().isoformat()}
         with open(COUNTER_FILE, 'w') as f:
             json.dump(data, f)
